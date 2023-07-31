@@ -43,6 +43,9 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
+  /// Translates countries in bottom sheet to language of the country
+  final bool translateCountries;
+
   const CountryListView({
     Key? key,
     required this.onSelect,
@@ -54,6 +57,7 @@ class CountryListView extends StatefulWidget {
     this.searchAutofocus = false,
     this.showWorldWide = false,
     this.showSearch = true,
+    this.translateCountries = false,
   })  : assert(
           exclude == null || countryFilter == null,
           'Cannot provide both exclude and countryFilter',
@@ -208,8 +212,9 @@ class _CountryListViewState extends State<CountryListView> {
                 ],
               ),
               Expanded(
-                child: Text(
-                  CountryLocalizations.of(context)
+                child: Text(widget.translateCountries
+                  ? CountryLocalizations(Locale(country.countryCode.toLowerCase())).countryName(countryCode: country.countryCode.toUpperCase()) ?? country.name
+                  : CountryLocalizations.of(context)
                           ?.countryName(countryCode: country.countryCode)
                           ?.replaceAll(RegExp(r"\s+"), " ") ??
                       country.name,

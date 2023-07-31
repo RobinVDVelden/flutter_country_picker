@@ -253,7 +253,7 @@ class _CountryListViewState extends State<CountryListView> {
       _searchResult.addAll(_countryList);
     } else {
       _searchResult = _countryList
-          .where((c) => c.startsWith(query, localizations, widget.translateCountries))
+          .where((c) => c.startsWith(query, localizations, translateCountries: widget.translateCountries))
           .toList();
     }
 

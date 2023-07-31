@@ -101,6 +101,7 @@ class CountryLocalizations {
       case 'lt':
         return lt[countryCode];
       case 'nl':
+      case 'be':
         return nl[countryCode];
       case 'it':
         return it[countryCode];
